@@ -8,12 +8,23 @@
     plumber = require('gulp-plumber'),
     war = require('gulp-war'),
     zip = require('gulp-zip'),
-    _paths = ['server/**/*.js', 'client/js/*.js', 'server/views/*.html'];
+    _paths = ['app/'];
+
+    var paths = {
+        scripts: 'app/**/*.js',
+        styles: ['./app/**/*.css', './app/**/*.scss'],
+        index: './app/index.html',
+        partials: ['app/**/*.html', '!app/index.html'],
+        distDev: './dist.dev',
+        distProd: './dist.prod',
+        distScriptsProd: './dist.prod/scripts',
+        scriptsDevServer: 'devServer/**/*.js'
+    }
 
     //register nodemon task
     gulp.task('nodemon', function() {
         nodemon({
-            script: 'server/app.js',
+            script: 'app/index.html',
             env: {
                 'NODE_ENV': 'development'
             }

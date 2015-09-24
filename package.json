@@ -20,7 +20,10 @@
     "gulp": "~3.9.0",
     "gulp-livereload": "~3.8.0",
     "gulp-nodemon": "~2.0.4",
-    "gulp-jshint": "~1.11.2"
+    "gulp-jshint": "~1.11.2",
+    "gulp-plumber": "~1.0.1",
+    "gulp-zip": "~3.0.2",
+    "gulp-war": "~0.1.2"
   },
   "scripts": {
     "postinstall": "bower install",
