@@ -1,2 +1,3 @@
-# angularDemo
-AngularJS + Gulp + Sass + Jasmin
+npm install -g gulp bower
+bower install
+gulp serve
