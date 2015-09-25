@@ -4,3 +4,4 @@ dist
 coverage
 *.swp
 *.log
+.tmp
