@@ -14,6 +14,7 @@ gulp.task('watch', ['markups', 'inject'], function () {
 
   gulp.watch([path.join(conf.paths.src, '/*.html'), 'bower.json'], ['inject']);
 
+  // Stylesheets
   gulp.watch([
     path.join(conf.paths.src, '/assets/css/**/*.css'),
     path.join(conf.paths.src, '/assets/css/**/*.scss')
@@ -25,9 +26,9 @@ gulp.task('watch', ['markups', 'inject'], function () {
     }
   });
 
+  // Non-AngularJS js files
   gulp.watch([
     path.join(conf.paths.src, '/assets/js/**/*.js'),
-    path.join(conf.paths.src, '/app/**/*.js')
   ], function(event) {
     if(isOnlyChange(event)) {
       gulp.start('scripts');
@@ -36,9 +37,22 @@ gulp.task('watch', ['markups', 'inject'], function () {
     }
   });
 
+  // Handlebar templates
   gulp.watch(path.join(conf.paths.src, '/app/**/*.hbs'), ['markups']);
 
-  gulp.watch(path.join(conf.paths.src, '/app/**/*.html'), function(event) {
+  // AngularJS html files
+  gulp.watch(path.join(conf.paths.src, '/app/components/**/*.html'), function(event) {
     browserSync.reload(event.path);
   });
+  
+  // AngularJS js files
+  gulp.watch(path.join(conf.paths.src, '/app/components/**/*.js'), function(event) {
+    browserSync.reload(event.path);
+  });
+
+
+
+
+
+
 });
