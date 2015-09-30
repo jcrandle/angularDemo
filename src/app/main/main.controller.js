@@ -1,39 +1,17 @@
-(function() {
-  'use strict';
+angular.module('angularDemo')
+    .controller('MainController', ['$scope', '$element', function($scope, $element) {
+        var vm = this;
+        var registration;
 
-  angular
-    .module('angularDemo')
-    .controller('MainController', MainController);
+        activate();
 
-  /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
-    var vm = this;
+        function activate() {
+            vm.registration = false;
+        }
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1443134812108;
-    vm.showToastr = showToastr;
+        $scope.toggleRegistration = function() {
+            vm.registration = !vm.registration;
+        }
 
-    activate();
-
-    function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
     }
-
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
-    }
-
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
-  }
-})();
+]);

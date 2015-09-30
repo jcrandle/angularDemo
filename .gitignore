@@ -1,6 +1,8 @@
+target
 node_modules
 bower_components
 dist
 coverage
 *.swp
 *.log
+.tmp
