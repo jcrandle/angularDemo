@@ -9,11 +9,26 @@ div {
     .no-gutter {
         padding-left: 0;
         padding-right: 0;
-        padding-top: 3px;
+        padding-top: 0px;
         padding-bottom: 3px;
     }
 
     .form-label {
         transform: translate(0,38%);
+    }
+
+    .panel-default > .panel-heading-dg {
+        background-image: url('/assets/images/modal-header-bg.jpg') !important;
+        color: white;
+    }
+
+    .input-group-addon-text {
+        @extend .input-group-addon;
+        width: 150px;
+    }
+
+    .input-group {
+        @extend .input-group;
+        width: 100%;
     }
 }

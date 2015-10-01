@@ -1,36 +1,32 @@
 <div class="container">
 
   <div class="top-nav">
-    <acme-navbar creation-date="main.creationDate"></acme-navbar>
+    <acme-navbar creation-date="creationDate"></acme-navbar>
   </div>
 
     <row id="sign-in" ng-show="!main.registration">
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading panel-heading-dg">
                     <h3 class="panel-title">Sign In</h3>
                 </div>
                 <div class="panel-body">
                     <form>
                     <div class="form-group">
-                        <div class="col-md-2 no-gutter form-label">
-                            <label for="username">Username</label>
-                        </div>
-                        <div class="col-md-10 no-gutter">
-                            <input type="text" id="username" class="form-control" placeholder="Username">
+                        <div class="input-group">
+                            <span class="input-group-addon-text" id="username-addon">Username</span>
+                            <input type="text" class="form-control" placeholder="Username" aria-describedby="username-addon" ng-model="main.username">
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-2 no-gutter form-label">
-                            <label for="password">Password</label>
-                        </div>
-                        <div class="col-md-10 no-gutter">
-                            <input type="text" id="password" class="form-control" placeholder="Password">
+                        <div class="input-group">
+                            <span class="input-group-addon-text" id="password-addon">Password</span>
+                            <input type="text" class="form-control" placeholder="Password" aria-describedby="password-addon" ng-model="main.password">
                         </div>
                     </div>
                     <div class="pull-right">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    or <a href="#" id="register" ng-click="toggleRegistration()">Register</a>
+                        <button type="submit" class="btn btn-primary" ng-click="main.signIn()">Submit</button>
+                        or <a href="#" id="register" ng-click="main.toggleRegistration()">Register</a>
                     </div>
                 </form>
                 </div>
@@ -39,39 +35,61 @@
     </row>
     <row id="register" ng-show="main.registration">
         <div class="col-md-6">
-        <div>
-            <h3>Register</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading panel-heading-dg">
+                    <h3 class="panel-title">Register</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon-text" id="first-name-addon">First Name</span>
+                            <input type="text" class="form-control" placeholder="First Name" aria-describedby="first-name-addon">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon-text" id="last-name-addon">Last Name</span>
+                            <input type="text" class="form-control" placeholder="Last Name" aria-describedby="last-name-addon">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon-text" id="username-addon">Userame</span>
+                            <input type="text" class="form-control" placeholder="User Name" aria-describedby="user-name-addon">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 no-gutter">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="phone-number-addon">Phone Number</span>
+                                <input type="text" class="form-control" placeholder="Phone Number" aria-describedby="phone-number-addon">
+                            </div>
+                        </div>
+                        <div claiss="col-md-4 no-gutter">
+                            <div class="btn-group" dropdown is-open="status.isopen">
+                                <button id="single-button" type="button" class="btn btn-default" dropdown-toggle ng-disabled="disabled">
+                                    {{main.phoneType}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+                                    <li ng-repeat="type in main.phoneTypes" role="menuitem" ng-click="main.setPhoneType(type)"><a href="#">{{type}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" ng-click="main.toggleRegistration()">Cancel</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <form>
-            <div class="form-group">
-                <div class="col-md-2 no-gutter form-label">
-                    <label for="first_name">First Name</label>
-                </div>
-                <div class="col-md-10 no-gutter">
-                    <input type="text" id="first_name" class="form-control" placeholder="First Name">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 no-gutter form-label">
-                    <label for="last_name">Last Naime</label>
-                </div>
-                <div class="col-md-10 no-gutter">
-                    <input type="text" id="last_name" class="form-control" placeholder="Last Name">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-2 no-gutter form-label">
-                    <label for="username">Username</label>
-                </div>
-                <div class="col-md-10 no-gutter">
-                    <input type="text" id="username" class="form-control" placeholder="Username">
-                </div>
-            </div>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="submit" class="btn btn-primary" ng-click="toggleRegistration()">Cancel</button>
-            </div>
-        </form>
+    </row>
+    <row class="col-md-12">
+        <div ng-show="main.message!=null">
+            Status: {{main.message.status}}
+            Response: {{main.message.data.data}}
         </div>
     </row>
 
